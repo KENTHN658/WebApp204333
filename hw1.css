@@ -1,0 +1,220 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+.Container1 {
+  margin: 0 auto;
+  font-size: 20px;
+}
+#logo {
+  font-size: larger;
+}
+.nav-con {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  background-color: #f7f7f7;
+}
+
+#logo {
+  margin: 1rem;
+}
+
+#btn-logout {
+  margin: 1rem;
+  font-size: 16px;
+  padding: 12px 28px;
+  border-radius: 4px;
+  background-color: rgb(76, 65, 236);
+  border: none;
+  color: azure;
+  transition: background-color 0.3s ease;
+}
+
+#btn-logout:hover {
+  background-color: rgb(151, 145, 242);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1fr;
+  height: max-content;
+}
+
+#item1 {
+  background-color: #f7f7f7;
+  display: flexbox;
+  width: 100%;
+  height: 100vh;
+}
+
+.Container2 {
+  margin: 2rem;
+  box-sizing: border-box; /* Include margin in the element's total width */
+}
+
+#textc1 {
+  font-size: 18px;
+}
+
+.input-form {
+  margin-top: 1.5rem;
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: rgb(177, 53, 53);
+  font-size: 50px;
+  cursor: pointer;
+}
+
+#icon3 {
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+#inputdone {
+  box-sizing: border-box;
+  font-size: 16px;
+  width: 100%;
+  border: 1px solid #ededdd; /* Add border styling */
+  border-radius: 4px; /* Add border radius */
+  background-repeat: no-repeat;
+  padding: 20px 5rem;
+  background-position: 15px 50%;
+  background-size: 3%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="16" width="10" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>');
+}
+
+.Container3 {
+  display: flex;
+  padding: 20px;
+  background-color: #fff;
+  padding-right: 30px;
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  width: 100%; /* Adjust the width as needed */
+  justify-content: space-between;
+}
+
+.wrapbtn {
+  display: flex;
+}
+
+#all {
+  margin-left: 20px;
+  padding: 3px;
+  border: none;
+  background-color: inherit;
+}
+
+#completed,
+#active {
+  padding: 3px;
+  border: none;
+  background-color: inherit;
+}
+
+#all:hover,
+#completed:hover,
+#active:hover {
+  border-color: inherit;
+}
+
+#clear-btn,
+#item-btn {
+  margin-top: 2px;
+}
+
+#item2 {
+  background-color: #efeded;
+  display: flexbox;
+  width: 100%;
+  height: 100vh;
+}
+
+.Container4 {
+  display: flex;
+  padding: 20px;
+  background-color: #fff;
+  padding-right: 30px;
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  width: 100%; /* Adjust the width as needed */
+}
+
+#uname {
+  background-color: #dfe3e6;
+  font-weight: bolder;
+  padding: 3px;
+  padding-left: 9px;
+  padding-right: 9px;
+}
+
+#message {
+  margin-left: 15px;
+  margin-top: 3px;
+}
+
+#load {
+  width: 100%;
+  padding: 5px;
+  background-color: #e6ecf0;
+  box-shadow: #555;
+  border: #aeb0b1;
+  font-size: 14px;
+}
+
+#item3 {
+  background-color: #efeded;
+  display: flexbox;
+  width: 100%;
+  height: 100vh;
+}
+
+.Container5 {
+  margin: 2rem;
+  box-sizing: border-box; /* Include margin in the element's total width */
+}
+
+#textc3 {
+  font-size: medium;
+  font-weight: bolder;
+  margin-bottom: 1.5rem;
+}
+
+.Container6 {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #efeded;
+}
+
+.Container6:hover {
+  background-color: rgb(
+    205,
+    188,
+    188
+  ); /* Change this to the desired background color on hover */
+}
+
+#user-icon {
+  font-size: 24px;
+  color: #555;
+  margin-left: 5px;
+}
+
+#user-online {
+  font-size: 16px;
+  margin-left: 9px;
+}
+@media screen and (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}

@@ -1,0 +1,78 @@
+<!-- 640510658_ธนธรณ์ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="hw1.css" />
+    <script src="hw2.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="Container">
+      <nav>
+        <div class="Container1">
+          <div class="nav-con">
+            <div class="logo" id="logo">GraphQL Tutorial App</div>
+            <button id="btn-logout">Logout</button>
+          </div>
+        </div>
+      </nav>
+      <div class="grid-container">
+        <div id="item1">
+          <div class="Container2">
+            <div id="textc1">Personal todos</div>
+            <form class="input-form">
+              <input id="inputdone" placeholder="What need to be done?" />
+            </form>
+
+            <div class="Container3">
+              <div class="wrapbtn">
+                <div id="item-btn">0 item</div>
+                <button id="all" class="all">All</button>
+                <button id="active" class="all">Active</button>
+                <button id="completed" class="all">Completed</button>
+              </div>
+              <div id="clear-btn">Clear completed</div>
+            </div>
+          </div>
+        </div>
+        <div id="item2">
+          <div class="Container2">
+            <div id="textc1">Public feed (realtime)</div>
+            <form class="input-form" id="form2" method="post">
+              <input
+                id="inputdone"
+                placeholder="What needs to be done?"
+                name="message"
+                class="input1"
+              />
+              <input id="inputdone" name="user" value="@thanaton" hidden />
+            </form>
+            <div id="box-message">
+              <div class="Container4">
+                <!-- <div id="uname">@thanaton</div>
+                <div id="message">hello</div> -->
+              </div>
+            </div>
+
+            <button id="load" onclick="loadMoreMessages()">Load older tasks</button>
+          </div>
+        </div>
+        <div id="item3">
+          <div class="Container5">
+            <div id="textc3">ONLINE USERS - 1</div>
+            <div class="Container6">
+              <i class="fa fa-user-o" aria-hidden="true" id="user-icon"></i>
+              <div id="user-online">thanaton_b</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
