@@ -16,58 +16,55 @@ const headers = {
 
 // เมื่อ DOM โหลดเสร็จสมบูรณ์
 document.addEventListener("DOMContentLoaded", function () {
-  handleFormSubmission();
-  loadMessagesAndUpdateCache();
-});
-
-// ฟังก์ชันสำหรับจัดการการส่งข้อมูลแบบฟอร์ม
-function handleFormSubmission() {
+  // เลือกแบบฟอร์มและอิงอาร์เรย์ของอิลิเมนต์ input
+  var form = document.getElementById("form2");
   var inputElement = document.querySelector(".input1");
 
   // เพิ่ม event listener เมื่อมีการกดปุ่ม Enter ใน input field
   inputElement.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       event.preventDefault();
-      collectFormData();
+
+      // เก็บข้อมูลจากแบบฟอร์มลงในตัวแปร formDataObject
+      var formData = new FormData(form);
+      formData.forEach(function (value, key) {
+        formDataObject[key] = value;
+      });
+
+      // เคลียร์ input field
+      inputElement.value = "";
+
+      // แสดงข้อความใหม่ใน UI
+      insertText();
+
+      // เรียกฟังก์ชัน insert() เพื่อเพิ่มข้อมูลลงในฐานข้อมูล
+      insertData();
     }
   });
-}
 
-// ฟังก์ชันสำหรับรวบรวมข้อมูลจากแบบฟอร์ม
-function collectFormData() {
-  var formData = new FormData(form);
-  formData.forEach(function (value, key) {
-    formDataObject[key] = value;
-  });
-
-  clearInputField();
-  insertText();
-  insertData();
-}
-
-// ฟังก์ชันสำหรับเคลียร์ input field
-function clearInputField() {
-  var inputElement = document.querySelector(".input1");
-  inputElement.value = "";
-}
+  // โหลดข้อมูลแสดงใน UI เมื่อเว็บโหลดเสร็จสมบูรณ์
+  loadMessagesAndUpdateCache();
+});
 
 // ฟังก์ชันสำหรับแสดงข้อความใหม่ใน UI
 function insertText() {
   let maxMessages = 5; // จำนวนข้อความสูงสุดที่แสดง
+
+  // เลือก element ที่ต้องการแสดงข้อความ
   let messageContainer = document.querySelector("#box-message");
+
+  // สร้าง HTML element ใหม่สำหรับข้อความ
   let messageOutput = `
     <div class="Container4">
       <div id="uname">${formDataObject.user}</div>
       <div id="message">${formDataObject.message}</div>
     </div>
   `;
-  messageContainer.insertAdjacentHTML("afterbegin", messageOutput);
-  hideOldMessagesIfNeeded();
-}
 
-// ฟังก์ชันสำหรับซ่อนข้อความที่เก่าเกินกำหนด
-function hideOldMessagesIfNeeded() {
-  let maxMessages = 5;
+  // แทรก HTML element ใหม่ลงใน container
+  messageContainer.insertAdjacentHTML("afterbegin", messageOutput);
+
+  // ซ่อนข้อความเก่าเมื่อเกินจำนวนสูงสุดที่กำหนดไว้
   let messages = document.getElementsByClassName("Container4");
   if (messages.length > maxMessages) {
     for (let i = maxMessages; i < messages.length; i++) {
@@ -91,6 +88,7 @@ function insertData() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Success:", data);
+      // เรียกฟังก์ชันเพื่อโหลดข้อมูลและอัปเดต cache
       loadMessagesAndUpdateCache();
     })
     .catch((error) => {
@@ -100,29 +98,17 @@ function insertData() {
 
 // ฟังก์ชันสำหรับโหลดข้อมูลและอัปเดต cache
 function loadMessagesAndUpdateCache() {
-  fetchMessagesFromAPI()
+  fetch("https://glowing-dog-97.hasura.app/api/rest/myquery")
+    .then((response) => response.json())
     .then((data) => {
-      cacheMessagesLocally(data);
+      // เก็บข้อมูลใน cache
+      localStorage.setItem("cachedMessages", JSON.stringify(data));
+      // แสดงข้อมูลใน UI
       renderMessages(data);
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
-}
-
-// ฟังก์ชันสำหรับโหลดข้อมูลจากเซิร์ฟเวอร์
-function fetchMessagesFromAPI() {
-  return fetch("https://glowing-dog-97.hasura.app/api/rest/myquery")
-    .then((response) => response.json())
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-}
-
-// ฟังก์ชันสำหรับเก็บข้อมูลลงใน cache
-function cacheMessagesLocally(data) {
-  localStorage.setItem("cachedMessages", JSON.stringify(data));
-  console.log(localStorage)
 }
 
 // ฟังก์ชันสำหรับแสดงข้อมูลใน UI
@@ -147,4 +133,13 @@ function renderMessages(data) {
 
     messageContainer.appendChild(messageDiv);
   });
+}
+
+// ฟังก์ชันสำหรับโหลดข้อมูลเพิ่มเติม
+function loadMoreMessages() {
+  // แสดงข้อความที่ซ่อนไว้
+  let messages = document.getElementsByClassName("Container4");
+  for (let i = 0; i < messages.length; i++) {
+    messages[i].style.display = "flex";
+  }
 }
